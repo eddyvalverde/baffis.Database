@@ -65,7 +65,7 @@ CREATE PROCEDURE USP_CREATECURRENCY(
   LANGUAGE plpgsql AS
 $proc$
 BEGIN
-   INSERT INT CURRENCY(COUNTRY,NAME,CODE,SYMBOL) VALUES(COUNTRY_val,NAME_val,CODE_val,SYMBOL_val);
+   INSERT INTO CURRENCY(COUNTRY,NAME,CODE,SYMBOL) VALUES(COUNTRY_val,NAME_val,CODE_val,SYMBOL_val);
 END
 $proc$;
 
@@ -100,23 +100,12 @@ BEGIN
 END
 $proc$;
 
-create or replace procedure USP_CREATECURRENCY(
-   sender int,
-   receiver int,
-   amount dec
+CREATE PROCEDURE USP_DELETECURRENCY(
+   IdCurrency_val           INT
 )
-language plpgsql    
-as $$
-begin
-    -- subtracting the amount from the sender's account 
-    update accounts 
-    set balance = balance - amount 
-    where id = sender;
-
-    -- adding the amount to the receiver's account
-    update accounts 
-    set balance = balance + amount 
-    where id = receiver;
-
-    commit;
-end;$$
+  LANGUAGE plpgsql AS
+$proc$
+BEGIN
+   DELETE FROM CURRENCY WHERE IdCurrency=IdCurrency_val;
+END
+$proc$;
