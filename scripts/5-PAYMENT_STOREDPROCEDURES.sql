@@ -12,9 +12,9 @@ END
 $proc$;
 
 CREATE PROCEDURE USP_CREATEPAYMENT(
-   IDSubscription_val INT  NOT NULL,
-   Subscriber_val           TEXT    NOT NULL,
-   PaymentDate_val           TIMESTAMP    NOT NULL,
+   IDSubscription_val INT,
+   Subscriber_val           TEXT,
+   PaymentDate_val           TIMESTAMP,
    Cost_val         MONEY
 )
   LANGUAGE plpgsql AS

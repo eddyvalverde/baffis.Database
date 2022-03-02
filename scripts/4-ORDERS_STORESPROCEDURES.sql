@@ -30,7 +30,7 @@ $proc$;
 
 CREATE PROCEDURE USP_READORDERS(
    IDSubscription_val INT,
-   Subscriber_val           TEXT,
+   Subscriber_val           TEXT
 )
   LANGUAGE plpgsql AS
 $proc$
