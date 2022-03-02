@@ -6,7 +6,7 @@ BEGIN
         Title,
         Description,
         Cost,
-        IdCurrency,
+        IdCurrency
    FROM SUBSCRIPTION;
 END
 $proc$;
@@ -15,7 +15,7 @@ CREATE PROCEDURE USP_CREATESUBSCRIPTION(
    Title_val           TEXT,
    Description_val           TEXT,
    Cost_val                 money,
-   IdCurrency_val INT,
+   IdCurrency_val INT
 )
   LANGUAGE plpgsql AS
 $proc$
@@ -34,7 +34,7 @@ BEGIN
         Title,
         Description,
         Cost,
-        IdCurrency,
+        IdCurrency
    FROM SUBSCRIPTION WHERE IdSUBSCRIPTION=IdSUBSCRIPTION_val;
 END
 $proc$;
@@ -44,7 +44,7 @@ CREATE PROCEDURE USP_UPDATESUBSCRIPTION(
    Title_val           TEXT,
    Description_val           TEXT,
    Cost_val                 money,
-   IdCurrency_val INT,
+   IdCurrency_val INT
 )
   LANGUAGE plpgsql AS
 $proc$
