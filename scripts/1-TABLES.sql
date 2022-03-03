@@ -15,7 +15,7 @@ CREATE TABLE Subscription(
    Description           TEXT    NOT NULL,
    Cost                 money NOT NULL,
    IdCurrency INT NOT NULL,
-   REMOVED        BOOLEAN DEFAULT FALSE
+   REMOVED        BOOLEAN DEFAULT FALSE,
    CONSTRAINT fk_currency
       FOREIGN KEY(IdCurrency) 
 	  REFERENCES Currency(IdCurrency)
@@ -28,7 +28,7 @@ CREATE TABLE Orders(
    ExpiresOn                 TIMESTAMP,
    PaymentDay   INT,
    Cost         MONEY,
-   REMOVED        BOOLEAN DEFAULT FALSE
+   REMOVED        BOOLEAN DEFAULT FALSE,
    PRIMARY KEY (Subscriber, IDSubscription),
    CONSTRAINT fk_order
       FOREIGN KEY(IDSubscription) 
@@ -41,7 +41,7 @@ CREATE TABLE Payment(
    Subscriber           TEXT    NOT NULL,
    PaymentDate           TIMESTAMP    NOT NULL,
    Cost         MONEY,
-   REMOVED        BOOLEAN DEFAULT FALSE
+   REMOVED        BOOLEAN DEFAULT FALSE,
    CONSTRAINT fk_payment
       FOREIGN KEY(Subscriber, IDSubscription) 
 	  REFERENCES Orders(Subscriber, IDSubscription)
