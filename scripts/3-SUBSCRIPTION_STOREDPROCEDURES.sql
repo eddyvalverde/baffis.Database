@@ -1,15 +1,28 @@
-CREATE PROCEDURE USP_LISTSUBSCRIPTION()
-  LANGUAGE plpgsql AS
-$proc$
-BEGIN
-   SELECT IdSUBSCRIPTION,
-        Title,
-        Description,
-        Cost,
-        IdCurrency
-   FROM SUBSCRIPTION;
-END
-$proc$;
+CREATE OR REPLACE FUNCTION USP_LISTSUBSCRIPTION() 
+RETURNS TABLE(
+   IDSubscription INT,
+   Title TEXT,Description TEXT,
+   Cost  money,
+   IdCurrency INT,
+   COUNTRY TEXT,
+   NAME TEXT,
+   CODE CHAR(5),
+   SYMBOL CHAR(5)
+)
+AS    $$
+   SELECT 
+   SUBSCRIPTION.IdSUBSCRIPTION AS IdSUBSCRIPTION,
+   SUBSCRIPTION.Title AS Title,
+   SUBSCRIPTION.Description AS Description,
+   SUBSCRIPTION.Cost AS Cost,
+   SUBSCRIPTION.IdCurrency AS IdCurrency,
+   Currency.COUNTRY as COUNTRY,
+   Currency.NAME as NAME,
+   Currency.CODE as CODE,
+   Currency.SYMBOL as SYMBOL
+   FROM SUBSCRIPTION, Currency WHERE SUBSCRIPTION.IdCurrency = CURRENCY.IdCurrency;
+$$
+LANGUAGE SQL;
 
 CREATE PROCEDURE USP_CREATESUBSCRIPTION(
    Title_val           TEXT,

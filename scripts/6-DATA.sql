@@ -130,3 +130,7 @@ INSERT INTO currency (country, name, code, symbol) VALUES ('Vietnam', 'Dong', 'V
 INSERT INTO currency (country, name, code, symbol) VALUES ('Yemen', 'Rials', 'YER', '﷼');
 INSERT INTO currency (country, name, code, symbol) VALUES ('Zimbabwe', 'Zimbabwe Dollars', 'ZWD', 'Z$');
 INSERT INTO currency (country, name, code, symbol) VALUES ('India', 'Rupees', 'INR', '₹');
+
+INSERT INTO Subscription (Title,Description,Cost,IdCurrency) VALUES ('Subscription1','Description1',12.34,124);
+INSERT INTO Subscription (Title,Description,Cost,IdCurrency) VALUES ('Subscription2','Description2',13.34,124);
+INSERT INTO Subscription (Title,Description,Cost,IdCurrency) VALUES ('Subscription3','Description3',14.34,124);
