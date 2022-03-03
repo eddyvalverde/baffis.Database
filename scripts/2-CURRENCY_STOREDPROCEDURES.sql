@@ -36,3 +36,14 @@ BEGIN
 END
 $proc$;
 
+CREATE PROCEDURE USP_DELETECURRENCY(
+   IdCurrency_val INT
+)
+  LANGUAGE plpgsql AS
+$proc$
+BEGIN
+   UPDATE Currency
+   SET REMOVED=TRUE
+   WHERE IdCurrency = IdCurrency_val;
+END
+$proc$;
