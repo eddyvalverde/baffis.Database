@@ -22,6 +22,7 @@ CREATE TABLE Subscription(
 );
 
 CREATE TABLE Orders(
+   IDOrder SERIAL PRIMARY KEY,
    IDSubscription INT  NOT NULL,
    Subscriber           TEXT    NOT NULL,
    SubscribedOn           TIMESTAMP    NOT NULL,
@@ -29,7 +30,6 @@ CREATE TABLE Orders(
    PaymentDay   INT,
    Cost         MONEY,
    REMOVED        BOOLEAN DEFAULT FALSE,
-   PRIMARY KEY (Subscriber, IDSubscription),
    CONSTRAINT fk_order
       FOREIGN KEY(IDSubscription) 
 	  REFERENCES Subscription(IDSubscription)
@@ -37,13 +37,12 @@ CREATE TABLE Orders(
 
 CREATE TABLE Payment(
    IdPayment SERIAL PRIMARY KEY,
-   IDSubscription INT  NOT NULL,
-   Subscriber           TEXT    NOT NULL,
+   IDOrder INT NOT NULL,
    PaymentDate           TIMESTAMP    NOT NULL,
    Cost         MONEY,
    REMOVED        BOOLEAN DEFAULT FALSE,
    CONSTRAINT fk_payment
-      FOREIGN KEY(Subscriber, IDSubscription) 
-	  REFERENCES Orders(Subscriber, IDSubscription)
+      FOREIGN KEY(IDOrder) 
+	  REFERENCES Orders(IDOrder)
 );
 
