@@ -140,3 +140,23 @@ INSERT INTO Orders(IDSubscription,Subscriber,SubscribedOn,PaymentDay,Cost) VALUE
 INSERT INTO Orders(IDSubscription,Subscriber,SubscribedOn,PaymentDay,Cost) VALUES(2,'dfg',NOW(),2,12.34);
 INSERT INTO Orders(IDSubscription,Subscriber,SubscribedOn,PaymentDay,Cost) VALUES(3,'hij',NOW(),3,13.34);
 INSERT INTO Orders(IDSubscription,Subscriber,SubscribedOn,PaymentDay,Cost) VALUES(4,'klm',NOW(),4,14.34);
+
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(1,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(1,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(1,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(1,NOW());
+
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(2,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(2,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(2,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(2,NOW());
+
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(3,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(3,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(3,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(3,NOW());
+
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(4,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(4,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(4,NOW());
+INSERT INTO Payment(IDOrder,PaymentDate) VALUES(4,NOW());
