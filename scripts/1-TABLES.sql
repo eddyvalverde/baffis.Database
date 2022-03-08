@@ -26,7 +26,7 @@ CREATE TABLE Orders(
    IDSubscription INT  NOT NULL,
    Subscriber           TEXT    NOT NULL,
    SubscribedOn           TIMESTAMP    NOT NULL,
-   ExpiresOn                 TIMESTAMP,
+   UnsubscribedOn           TIMESTAMP,
    PaymentDay   INT,
    Cost         MONEY,
    REMOVED        BOOLEAN DEFAULT FALSE,
@@ -45,4 +45,18 @@ CREATE TABLE Payment(
       FOREIGN KEY(IDOrder) 
 	  REFERENCES Orders(IDOrder)
 );
+
+CREATE OR REPLACE FUNCTION add_created_at_function()
+  RETURNS trigger AS $BODY$
+BEGIN
+  NEW.Cost := (SELECT COST FROM Orders WHERE IDOrder = NEW.IDOrder);
+  RETURN NEW;
+END $BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER add_created_at_trigger
+AFTER INSERT
+ON Payment
+FOR EACH ROW
+EXECUTE PROCEDURE add_created_at_function();
 

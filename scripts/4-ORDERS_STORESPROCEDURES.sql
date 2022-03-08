@@ -14,23 +14,18 @@ $proc$;
 
 CREATE PROCEDURE USP_CREATEORDERS(
    IDSubscription_val INT,
-   Subscriber_val           TEXT,
-   SubscribedOn_val           TIMESTAMP,
-   ExpiresOn_val                 TIMESTAMP,
-   PaymentDay_val   INT,
-   Cost_val         MONEY
+   Subscriber_val           TEXT
 )
   LANGUAGE plpgsql AS
 $proc$
 BEGIN
-   INSERT INTO ORDERS(IDSubscription,Subscriber,SubscribedOn,ExpiresOn,PaymentDay,Cost) 
-   VALUES(IDSubscription_val,Subscriber_val,SubscribedOn_val,ExpiresOn_val,PaymentDay_val,Cost_val);
+   INSERT INTO ORDERS(IDSubscription,Subscriber,SubscribedOn) 
+   VALUES(IDSubscription_val,Subscriber_val,NOW());
 END
 $proc$;
 
 CREATE PROCEDURE USP_READORDERS(
-   IDSubscription_val INT,
-   Subscriber_val           TEXT
+   IDOrder_val INT
 )
   LANGUAGE plpgsql AS
 $proc$
@@ -38,27 +33,21 @@ BEGIN
    SELECT IDSubscription,
    Subscriber,
    SubscribedOn,
-   ExpiresOn,
    PaymentDay,
    Cost
-   FROM ORDERS WHERE IDSubscription=IDSubscription_val AND Subscriber=Subscriber_val;
+   FROM ORDERS WHERE IDOrder=IDOrder_val;
 END
 $proc$;
 
-CREATE PROCEDURE USP_UPDATEORDERS(
-   IDSubscription_val INT,
-   Subscriber_val           TEXT,
-   SubscribedOn_val           TIMESTAMP,
-   ExpiresOn_val                 TIMESTAMP,
-   PaymentDay_val   INT,
-   Cost_val         MONEY
+CREATE PROCEDURE USP_DELETEORDERS(
+   IDOrder_val INT
 )
   LANGUAGE plpgsql AS
 $proc$
 BEGIN
    UPDATE ORDERS
-   SET ExpiresOn=ExpiresOn_val
-   WHERE IDSubscription = IDSubscription_val AND Subscriber=Subscriber_val;
+   SET REMOVED = TRUE, UnsubscribedOn = NOW()
+   WHERE IDOrder_val = IDOrder_val;
 END
 $proc$;
 

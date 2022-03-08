@@ -6,9 +6,9 @@ services:
   db:
     image: postgres:13
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=myodoo
-      - POSTGRES_USER=odoo
+      - POSTGRES_DB=BaffisDB
+      - POSTGRES_PASSWORD=baffispassword
+      - POSTGRES_USER=baffisuser
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
@@ -27,8 +27,8 @@ services:
     ports:
       - 8081:80
     environment:
-      - PGADMIN_DEFAULT_EMAIL=user@domain.com
-      - PGADMIN_DEFAULT_PASSWORD=Manager21*    
+      - PGADMIN_DEFAULT_EMAIL=user@baffis.com
+      - PGADMIN_DEFAULT_PASSWORD=baffispassword   
 
 volumes:    
   odoo-db-data:
