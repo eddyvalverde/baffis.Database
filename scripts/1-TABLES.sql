@@ -76,7 +76,7 @@ CREATE TRIGGER sett_one_subscription_trigger
   BEFORE INSERT OR DELETE
   ON public.Subscription
   FOR EACH ROW
-  EXECUTE PROCEDURE public.not_allow_multiple_orders();
+  EXECUTE PROCEDURE public.not_allow_multiple_subscriptions();
 
   CREATE OR REPLACE FUNCTION not_allow_multiple_enrollments()
   RETURNS "trigger" AS $BODY$
@@ -95,3 +95,33 @@ BEGIN
   ON public.Orders
   FOR EACH ROW
   EXECUTE PROCEDURE public.not_allow_multiple_enrollments();
+
+  CREATE OR REPLACE FUNCTION not_unremove()
+  RETURNS "trigger" AS $BODY$
+
+BEGIN
+        IF (NEW.REMOVED = FALSE AND OLD.REMOVED = TRUE) THEN
+            RAISE EXCEPTION 'You cannot unremove an item';
+        END IF;
+        RETURN NEW;
+    END $BODY$
+
+  LANGUAGE 'plpgsql' VOLATILE;
+
+  CREATE TRIGGER sett_not_unremove_order_trigger
+  BEFORE  UPDATE
+  ON public.Orders
+  FOR EACH ROW
+  EXECUTE PROCEDURE public.not_unremove();
+
+  CREATE TRIGGER sett_not_unremove_subscription_trigger
+  BEFORE UPDATE
+  ON public.Subscription
+  FOR EACH ROW
+  EXECUTE PROCEDURE public.not_unremove();
+
+  CREATE TRIGGER sett_not_unremove_payment_trigger
+  BEFORE UPDATE
+  ON public.Payment
+  FOR EACH ROW
+  EXECUTE PROCEDURE public.not_unremove();
