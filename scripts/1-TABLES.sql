@@ -155,8 +155,8 @@ CREATE TRIGGER sett_do_not_delete_payment_trigger
 DECLARE
 EXAMPLENUM   INT;
 BEGIN
-        INSERT INTO Payment(IDOrder,PaymentDate,Cost) VALUES(NEW.IDSubscription,NOW(),NEW.Cost); 
-          
+        INSERT INTO Payment(IDOrder,PaymentDate,Cost) VALUES(NEW.IDOrder,NOW(),NEW.Cost); 
+
         
         RETURN NEW;
     END $BODY$
