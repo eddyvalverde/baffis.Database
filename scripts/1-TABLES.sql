@@ -84,6 +84,8 @@ CREATE TRIGGER sett_one_subscription_trigger
 BEGIN
         IF EXISTS (SELECT IDOrder FROM public.Orders WHERE Subscriber = NEW.Subscriber AND IDSubscription=NEW.IDSubscription AND REMOVED = FALSE) THEN
             RAISE EXCEPTION 'You cannot have multiple enrollments to the same subscription';
+        ELSE
+            NEW.Cost := (SELECT COST FROM public.Subscription WHERE IDSubscription=NEW.IDSubscription);
         END IF;
         RETURN NEW;
     END $BODY$
