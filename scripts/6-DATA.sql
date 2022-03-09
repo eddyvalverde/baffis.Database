@@ -131,29 +131,9 @@ INSERT INTO currency (country, name, code, symbol) VALUES ('Yemen', 'Rials', 'YE
 INSERT INTO currency (country, name, code, symbol) VALUES ('Zimbabwe', 'Zimbabwe Dollars', 'ZWD', 'Z$');
 INSERT INTO currency (country, name, code, symbol) VALUES ('India', 'Rupees', 'INR', '₹');
 
-INSERT INTO Subscription (Title,Description,Cost,IdCurrency) VALUES ('Subscription1','Description1',11.34,124);
+INSERT INTO Subscription (Title,Description,Cost,IdCurrency) VALUES ('Baffis Service','This is an example service',11.34,124);
 
 INSERT INTO Orders(IDSubscription,Subscriber,SubscribedOn,PaymentDay,Cost) VALUES(1,'abc',NOW(),1,11.34);
-INSERT INTO Orders(IDSubscription,Subscriber,SubscribedOn,PaymentDay,Cost) VALUES(1,'dfg',NOW(),2,12.34);
-INSERT INTO Orders(IDSubscription,Subscriber,SubscribedOn,PaymentDay,Cost) VALUES(1,'hij',NOW(),3,13.34);
-INSERT INTO Orders(IDSubscription,Subscriber,SubscribedOn,PaymentDay,Cost) VALUES(1,'klm',NOW(),4,14.34);
+
 
 INSERT INTO Payment(IDOrder,PaymentDate) VALUES(1,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(1,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(1,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(1,NOW());
-
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(2,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(2,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(2,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(2,NOW());
-
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(3,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(3,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(3,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(3,NOW());
-
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(4,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(4,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(4,NOW());
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(4,NOW());
