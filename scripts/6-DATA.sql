@@ -133,7 +133,4 @@ INSERT INTO currency (country, name, code, symbol) VALUES ('India', 'Rupees', 'I
 
 INSERT INTO Subscription (Title,Description,Cost,IdCurrency) VALUES ('Baffis Service','This is an example service',11.34,124);
 
-INSERT INTO Orders(IDSubscription,Subscriber,SubscribedOn,PaymentDay,Cost) VALUES(1,'abc',NOW(),1,11.34);
 
-
-INSERT INTO Payment(IDOrder,PaymentDate) VALUES(1,NOW());
