@@ -127,3 +127,25 @@ BEGIN
   ON public.Payment
   FOR EACH ROW
   EXECUTE PROCEDURE public.not_unremove();
+
+  CREATE OR REPLACE FUNCTION do_not_delete()
+  RETURNS "trigger" AS $BODY$
+
+BEGIN
+        RAISE EXCEPTION 'You cannot delete from database';
+        RETURN NEW;
+    END $BODY$
+
+  LANGUAGE 'plpgsql' VOLATILE;
+
+CREATE TRIGGER sett_do_not_delete_order_trigger
+  BEFORE DELETE
+  ON public.Orders
+  FOR EACH ROW
+  EXECUTE PROCEDURE public.do_not_delete();
+
+CREATE TRIGGER sett_do_not_delete_payment_trigger
+  BEFORE DELETE
+  ON public.Payment
+  FOR EACH ROW
+  EXECUTE PROCEDURE public.do_not_delete();
