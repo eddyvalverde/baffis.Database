@@ -85,7 +85,7 @@ BEGIN
         IF EXISTS (SELECT IDOrder FROM public.Orders WHERE Subscriber = NEW.Subscriber AND IDSubscription=NEW.IDSubscription AND REMOVED = FALSE) THEN
             RAISE EXCEPTION 'You cannot have multiple enrollments to the same subscription';
         ELSE
-            NEW.Cost := (SELECT COST FROM public.Subscription WHERE IDSubscription=NEW.IDSubscription);
+            NEW.Cost := (SELECT COST FROM public.Subscription WHERE IDSubscription=NEW.IDSubscription);                     
         END IF;
         RETURN NEW;
     END $BODY$
@@ -149,3 +149,22 @@ CREATE TRIGGER sett_do_not_delete_payment_trigger
   ON public.Payment
   FOR EACH ROW
   EXECUTE PROCEDURE public.do_not_delete();
+
+  CREATE OR REPLACE FUNCTION register_payment_after_enrollment()
+  RETURNS "trigger" AS $BODY$
+DECLARE
+EXAMPLENUM   INT;
+BEGIN
+        INSERT INTO Payment(IDOrder,PaymentDate,Cost) VALUES(NEW.IDSubscription,NOW(),NEW.Cost); 
+          
+        
+        RETURN NEW;
+    END $BODY$
+
+  LANGUAGE 'plpgsql' VOLATILE;
+
+  CREATE TRIGGER sett_register_payment_after_enrollment_trigger
+  AFTER INSERT
+  ON public.Orders
+  FOR EACH ROW
+  EXECUTE PROCEDURE public.register_payment_after_enrollment()
