@@ -9,16 +9,27 @@ CREATE TABLE Currency(
    REMOVED        BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE Product(
+   IDProduct SERIAL PRIMARY KEY,
+   Name           TEXT    NOT NULL,
+   Description           TEXT    NOT NULL
+);
+
 CREATE TABLE Subscription(
    IDSubscription SERIAL PRIMARY KEY,
    Title           TEXT    NOT NULL,
    Description           TEXT    NOT NULL,
    Cost                 money NOT NULL,
    IdCurrency INT NOT NULL,
+   IDProduct INT NOT NULL,
    REMOVED        BOOLEAN DEFAULT FALSE,
+   BillingPeriod TEXT DEFAULT 'Monthly'
    CONSTRAINT fk_currency
       FOREIGN KEY(IdCurrency) 
-	  REFERENCES Currency(IdCurrency)
+	  REFERENCES Currency(IdCurrency),
+    CONSTRAINT fk_product
+      FOREIGN KEY(IDProduct) 
+	  REFERENCES Product(IDProduct)
 );
 
 CREATE TABLE Orders(
