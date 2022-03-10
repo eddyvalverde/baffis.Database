@@ -131,6 +131,7 @@ INSERT INTO currency (country, name, code, symbol) VALUES ('Yemen', 'Rials', 'YE
 INSERT INTO currency (country, name, code, symbol) VALUES ('Zimbabwe', 'Zimbabwe Dollars', 'ZWD', 'Z$');
 INSERT INTO currency (country, name, code, symbol) VALUES ('India', 'Rupees', 'INR', '₹');
 
+INSERT INTO Product (Name,Description) VALUES ('Baffis Service','This is an example service');
 INSERT INTO Subscription (Title,Description,Cost,IdCurrency) VALUES ('Baffis Service','This is an example service',11.34,124);
 
 
