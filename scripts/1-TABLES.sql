@@ -23,7 +23,7 @@ CREATE TABLE Subscription(
    IdCurrency INT NOT NULL,
    IDProduct INT NOT NULL,
    REMOVED        BOOLEAN DEFAULT FALSE,
-   BillingPeriod TEXT DEFAULT 'Monthly'
+   BillingPeriod TEXT DEFAULT 'Monthly',
    CONSTRAINT fk_currency
       FOREIGN KEY(IdCurrency) 
 	  REFERENCES Currency(IdCurrency),
